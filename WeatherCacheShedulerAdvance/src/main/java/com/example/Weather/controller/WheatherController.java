@@ -1,6 +1,8 @@
 package com.example.Weather.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +18,10 @@ public class WheatherController {
 	WheatherService service;
 
 	@PostMapping("Wheather")
-	public String saveData(@RequestBody Wheathers w) {
+	public ResponseEntity saveData(@RequestBody Wheathers w) {
 
 		service.saveData(w);
-		return "add data";
+		return new ResponseEntity("add data" , HttpStatus.OK);
 	}
 
 	@GetMapping("wheather/{cityId}")
